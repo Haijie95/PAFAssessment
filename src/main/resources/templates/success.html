@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table data-th-object="${log}">
+        <tr>
+            <td data-th-text="'Your transfer of $'+${log.amount}+' from '+${log.fromName}
+            +'('+${log.fromAccount}+') to ' + ${log.toName}+'('+${log.toAccount}+ ') is successful.' "></td>
+        </tr>
+        <tr>
+            <td data-th-text="'Transaction id is '+${log.transactionId}"></td>
+        </tr>
+    </table>
+</body>
+</html>

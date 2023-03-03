@@ -43,7 +43,7 @@ public class AcccountService {
         else if(xferdet.getAmount()<10){
             return "Transfer amount cannot be less than $10!";
         } //C5
-        else if(toAcc.getBalance()<xferdet.getAmount()){
+        else if(fromAcc.getBalance()<xferdet.getAmount()){
             return "Account does not have sufficient amount to transfer!";
         }
         return "";

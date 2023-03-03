@@ -16,7 +16,7 @@
                 <tr>
                     <td>From account: </td>
                     <td>
-                        <select data-th-field="*{toAccId}">
+                        <select data-th-field="*{fromAccId}">
                             <option data-th-each="i : ${account}" data-th-value="${i.accountId}" data-th-text="${i.name}+' ('+${i.accountId}+')'">
                             </option>
                         </select>
@@ -25,7 +25,7 @@
                 <tr>
                     <td>To account:</td>
                     <td>
-                        <select data-th-field="*{fromAccId}">
+                        <select data-th-field="*{toAccId}">
                             <option data-th-each="i : ${account}" data-th-value="${i.accountId}" data-th-text="${i.name}+' ('+${i.accountId}+')'">
                             </option>
                         </select>

@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.haijie.PAFAssessment.exception.AccountException;
 import com.haijie.PAFAssessment.models.Accounts;
+import com.haijie.PAFAssessment.models.Log;
 import com.haijie.PAFAssessment.models.TransferDetails;
 import com.haijie.PAFAssessment.services.AcccountService;
 import com.haijie.PAFAssessment.services.FundsTransferService;
@@ -37,7 +39,7 @@ public class FundsTransferController {
     }
 
     @PostMapping(path="/transfer",consumes = "application/x-www-form-urlencoded")
-	public String postPizza(TransferDetails xferdet,Model model) {
+	public String postPizza(TransferDetails xferdet,Model model) throws AccountException {
 
         System.out.println(xferdet);
         System.out.println(xferdet.getToAccId());
@@ -47,8 +49,10 @@ public class FundsTransferController {
         error = asvc.validateTransfer(xferdet);
 
         if(error.length()==0){
-            fts.transfer(xferdet);
-            return "test";
+            Log log = fts.transfer(xferdet);
+            System.out.println(log);
+            model.addAttribute("log", log);
+            return "success";
         } else{
             System.out.println(xferdet.getError());
             List<Accounts> account = asvc.getAllAccount();

@@ -17,15 +17,23 @@ public class AccountRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Accounts> getAllAccount(){
-        return jdbcTemplate.query(selectAllSQL, BeanPropertyRowMapper.newInstance(Accounts.class));
+        return jdbcTemplate.query(selectAllSQL, BeanPropertyRowMapper
+        .newInstance(Accounts.class));
     }
 
     public Accounts findByName(String accId){
-        return jdbcTemplate.queryForObject(findByAccIdSQL,BeanPropertyRowMapper.newInstance(Accounts.class),accId);
+        return jdbcTemplate.queryForObject(findByAccIdSQL,BeanPropertyRowMapper
+        .newInstance(Accounts.class),accId);
     }
 
-    public Accounts update(Accounts acc){
-        
+    public Boolean withdraw(Accounts acc, Float amount){
+        Integer result = jdbcTemplate.update(withdrawByAccId,amount,acc.getAccountId());
+        return result > 0?true:false;
+    }
+
+    public Boolean deposit(Accounts acc, Float amount){
+        Integer result = jdbcTemplate.update(depositByAccId,amount,acc.getAccountId());
+        return result > 0?true:false;
     }
 
 
