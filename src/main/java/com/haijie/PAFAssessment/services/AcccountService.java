@@ -23,8 +23,8 @@ public class AcccountService {
     public String validateTransfer(TransferDetails xferdet){
 
         
-        Accounts toAcc = arepo.findByName(xferdet.getToName());
-        Accounts fromAcc = arepo.findByName(xferdet.getFromName());
+        Accounts toAcc = arepo.findByName(xferdet.getToAccId());
+        Accounts fromAcc = arepo.findByName(xferdet.getFromAccId());
 
         
         //C0

@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TransferDetails implements Serializable {
     
-    private String toName;
-    private String fromName;
+    private String toAccId;
+    private String fromAccId;
     private float amount;
     private String comments;
     private String error;

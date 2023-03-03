@@ -20,7 +20,13 @@ public class AccountRepository {
         return jdbcTemplate.query(selectAllSQL, BeanPropertyRowMapper.newInstance(Accounts.class));
     }
 
-    public Accounts findByName(String name){
-        return jdbcTemplate.queryForObject(findByNameSQL,BeanPropertyRowMapper.newInstance(Accounts.class),name);
+    public Accounts findByName(String accId){
+        return jdbcTemplate.queryForObject(findByAccIdSQL,BeanPropertyRowMapper.newInstance(Accounts.class),accId);
     }
+
+    public Accounts update(Accounts acc){
+        
+    }
+
+
 }

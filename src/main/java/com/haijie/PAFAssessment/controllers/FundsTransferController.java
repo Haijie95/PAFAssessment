@@ -5,23 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.haijie.PAFAssessment.models.Accounts;
-import com.haijie.PAFAssessment.models.TError;
 import com.haijie.PAFAssessment.models.TransferDetails;
 import com.haijie.PAFAssessment.services.AcccountService;
+import com.haijie.PAFAssessment.services.FundsTransferService;
 
-import jakarta.validation.Valid;
 
 @Controller
 public class FundsTransferController {
     
     @Autowired
     AcccountService asvc;
+
+    @Autowired
+    FundsTransferService fts;
 
     @GetMapping(path={"/", "/index.html"})
     public String test(Model model){
@@ -40,12 +40,14 @@ public class FundsTransferController {
 	public String postPizza(TransferDetails xferdet,Model model) {
 
         System.out.println(xferdet);
-        System.out.println(xferdet.getToName());
-        System.out.println(xferdet.getFromName());
+        System.out.println(xferdet.getToAccId());
+        System.out.println(xferdet.getFromAccId());
 
-        String error = asvc.validateTransfer(xferdet);
+        String error="";
+        error = asvc.validateTransfer(xferdet);
 
         if(error.length()==0){
+            fts.transfer(xferdet);
             return "test";
         } else{
             System.out.println(xferdet.getError());
