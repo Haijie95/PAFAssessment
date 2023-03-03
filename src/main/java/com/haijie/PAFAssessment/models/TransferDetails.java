@@ -1,5 +1,7 @@
 package com.haijie.PAFAssessment.models;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,15 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TransferDetails {
-    private String nameOne;
-    private String nameTwo;
-    private String AccountOne;
-    private String AccountTwo;
-    private float balanceOne;
-    private float balanceTwo;
+public class TransferDetails implements Serializable {
+    
+    private String toName;
+    private String fromName;
     private float amount;
     private String comments;
-    private String errormsg;
+    private String error;
     
 }

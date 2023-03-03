@@ -19,4 +19,8 @@ public class AccountRepository {
     public List<Accounts> getAllAccount(){
         return jdbcTemplate.query(selectAllSQL, BeanPropertyRowMapper.newInstance(Accounts.class));
     }
+
+    public Accounts findByName(String name){
+        return jdbcTemplate.queryForObject(findByNameSQL,BeanPropertyRowMapper.newInstance(Accounts.class),name);
+    }
 }
